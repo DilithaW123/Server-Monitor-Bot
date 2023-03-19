@@ -1,7 +1,8 @@
 import os
 import discord
 from dotenv import load_dotenv
-load_dotenv()
+BASEDIR = os.path.abspath(os.path.dirname(__file__))
+load_dotenv(os.path.join(BASEDIR, '.env'))
 DISCORD_TOKEN = os.getenv('DISCORD_TOKEN')
 
 client  = discord.Client(intents=discord.Intents.default())
