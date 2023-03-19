@@ -7,7 +7,6 @@ DISCORD_TOKEN = os.getenv('DISCORD_TOKEN')
 USER_ID = os.getenv('USER_ID')
 
 intents = discord.Intents.default()
-intents.message_content = True
 
 client  = discord.Client(intents)
 
