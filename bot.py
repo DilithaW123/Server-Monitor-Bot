@@ -6,9 +6,7 @@ load_dotenv(find_dotenv())
 DISCORD_TOKEN = os.getenv('DISCORD_TOKEN')
 USER_ID = os.getenv('USER_ID')
 
-intents = discord.Intents.default()
-
-client  = discord.Client(intents)
+client  = discord.Client(discord.Intents.default())
 
 @client.event
 async def on_ready():
