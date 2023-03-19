@@ -5,6 +5,7 @@ from dotenv import load_dotenv, find_dotenv
 load_dotenv(find_dotenv())
 DISCORD_TOKEN = os.getenv('DISCORD_TOKEN')
 USER_ID = os.getenv('USER_ID')
+AUTHOR = os.getenv('AUTHOR')
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -19,8 +20,17 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-    print(message.author)
-    print(message);
-    
+    if (message.author != AUTHOR):
+        return
+    msg = message.content
+    if (msg[0] != "\/"):
+        return;
+    else:
+        print(f'Received command {msg}')
+    msg = msg[1:]
+
+    match msg:
+        case "shutdown":
+            os.system("shutdown /s /t 1")
 
 client.run(DISCORD_TOKEN)
