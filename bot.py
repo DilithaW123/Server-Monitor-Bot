@@ -6,7 +6,10 @@ load_dotenv(find_dotenv())
 DISCORD_TOKEN = os.getenv('DISCORD_TOKEN')
 USER_ID = os.getenv('USER_ID')
 
-client  = discord.Client(intents=discord.Intents.default())
+intents = discord.Intents.default()
+intents.message_content = True
+
+client  = discord.Client(intents=intents)
 
 @client.event
 async def on_ready():
