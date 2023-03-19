@@ -23,7 +23,7 @@ async def on_message(message):
     if (message.author != AUTHOR):
         return
     msg = message.content
-    if (msg[0] != "\/"):
+    if (msg[0] != "\\/"):
         return;
     else:
         print(f'Received command {msg}')
