@@ -19,6 +19,7 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
+    print(message.author)
     print(message);
     
 
