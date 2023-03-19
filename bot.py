@@ -1,19 +1,25 @@
 import os
 import discord
-from dotenv import load_dotenv
-BASEDIR = os.path.abspath(os.path.dirname(__file__))
-load_dotenv(os.path.join(BASEDIR, '.env'))
-DISCORD_TOKEN = os.getenv('DISCORD_TOKEN')
+from dotenv import load_dotenv, find_dotenv
 
-client  = discord.Client(intents=discord.Intents.default())
+load_dotenv(find_dotenv())
+DISCORD_TOKEN = os.getenv('DISCORD_TOKEN')
+USER_ID = os.getenv('USER_ID')
+
+intents = discord.Intents.default()
+intents.message_content = True
+
+client  = discord.Client(intents)
 
 @client.event
 async def on_ready():
     print(f'{client.user} has connected.')
+    user = await client.fetch_user(USER_ID)
+    await user.send("Hello, I'm now up and running!")
 
 @client.event
-async def on_message(message): 
-    print(message.author)
+async def on_message(message):
+    print(message);
+    
 
-client.run(DISCORD_TOKEN);
-
+client.run(DISCORD_TOKEN)
